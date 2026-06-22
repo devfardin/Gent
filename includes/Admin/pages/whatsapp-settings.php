@@ -34,7 +34,7 @@ $chk  = fn(string $key, string $default = '1') => ($opts[$key] ?? $default) === 
     </h1>
 
     <?php if (!empty($saved_notice)) : ?>
-        <div class="gent-notice success"><?php _e('✓ Settings saved successfully.', 'gent'); ?></div>
+        <div class="gent-notice success notice is-dismissible"><?php _e('✓ Settings saved successfully.', 'gent'); ?></div>
     <?php endif; ?>
 
     <form method="post">
