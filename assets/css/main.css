@@ -1,0 +1,16 @@
+ .ele_addons_advance_button{
+ background: var(--e-global-color-primary);
+ }
+ .ele_addons_advance_button_wrapper{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+   
+ }
+
+ .ele_addons_advance_button .ele_addons_icon_wrapper svg {
+    width: 20px !important;
+    height: auto;
+}
+
+

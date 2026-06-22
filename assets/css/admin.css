@@ -1,0 +1,230 @@
+/* Gent Admin Styles */
+
+.gent-settings-wrap {
+    max-width: 860px;
+    margin: 30px 20px 0 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.gent-settings-wrap h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1d2327;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #2271b1;
+}
+
+/* Card */
+.gent-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.gent-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: #2271b1;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Form grid */
+.gent-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 28px;
+}
+
+.gent-form-grid.gent-full {
+    grid-template-columns: 1fr;
+}
+
+.gent-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gent-field label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #3c434a;
+}
+
+.gent-field input[type="text"],
+.gent-field input[type="email"],
+.gent-field input[type="url"],
+.gent-field textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #c3c4c7;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #2c3338;
+    background: #fafafa;
+    transition: border-color .15s, box-shadow .15s;
+    box-sizing: border-box;
+}
+
+.gent-field input:focus,
+.gent-field textarea:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 2px rgba(34,113,177,.15);
+    outline: none;
+    background: #fff;
+}
+
+.gent-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Upload fields */
+.gent-upload-preview {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    background: #f6f7f7;
+    border: 1px dashed #c3c4c7;
+    border-radius: 5px;
+}
+
+.gent-upload-preview img {
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    object-fit: contain;
+}
+
+.gent-upload-preview input[type="file"] {
+    font-size: 12px;
+    color: #50575e;
+}
+
+/* Notice */
+.gent-notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.gent-notice.success {
+    background: #edfaef;
+    border: 1px solid #68de7c;
+    color: #1a7e30;
+}
+
+/* Submit */
+.gent-submit-row {
+    margin-top: 8px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.gent-submit-row .button-primary {
+    padding: 8px 24px;
+    font-size: 13px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Gent Whatsapp style */
+/* Hint text */
+.gent-hint {
+    font-size: 12px;
+    color: #787c82;
+    margin-top: 2px;
+}
+
+/* Select */
+.gent-field select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #c3c4c7;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #2c3338;
+    background: #fafafa;
+    box-sizing: border-box;
+    transition: border-color .15s;
+}
+
+.gent-field select:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 2px rgba(34,113,177,.15);
+    outline: none;
+}
+
+/* Time input */
+.gent-field input[type="time"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #c3c4c7;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #2c3338;
+    background: #fafafa;
+    box-sizing: border-box;
+}
+
+/* Color field */
+.gent-color-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border: 1px solid #c3c4c7;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+.gent-color-field input[type="color"] {
+    width: 32px;
+    height: 32px;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.gent-color-field span {
+    font-size: 13px;
+    color: #50575e;
+}
+
+/* Toggle checkbox */
+.gent-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3c434a;
+    cursor: pointer;
+    padding: 10px 14px;
+    background: #f6f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.gent-toggle-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2271b1;
+    cursor: pointer;
+}

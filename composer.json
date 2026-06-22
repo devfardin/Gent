@@ -1,0 +1,21 @@
+{
+    "name": "devfardin/ele-addons",
+    "description": "Ele Addons for Elementor",
+    "type": "project",
+    "license": "GPL-2.0-only",
+    "autoload": {
+        "psr-4": {
+            "Fardin\\Gent\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "devfardin",
+            "email": "contactfardin22@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.0"
+    }
+}
