@@ -87,27 +87,42 @@
     min-height: 80px;
 }
 
-/* Upload fields */
-.gent-upload-preview {
+/* Media picker */
+.gent-media-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gent-media-preview {
+    max-height: 80px;
+    max-width: 160px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    background: #f6f7f7;
+    object-fit: contain;
+    padding: 4px;
+}
+
+.gent-media-actions {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 10px 14px;
-    background: #f6f7f7;
-    border: 1px dashed #c3c4c7;
-    border-radius: 5px;
+    gap: 8px;
 }
 
-.gent-upload-preview img {
-    border-radius: 4px;
-    border: 1px solid #e0e0e0;
-    background: #fff;
-    object-fit: contain;
-}
-
-.gent-upload-preview input[type="file"] {
+.gent-media-remove {
+    background: none;
+    border: none;
+    color: #b32d2e;
     font-size: 12px;
-    color: #50575e;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.gent-media-remove:hover {
+    color: #8a1f1f;
+    text-decoration: underline;
 }
 
 /* Notice */

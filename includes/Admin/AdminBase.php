@@ -15,5 +15,7 @@ class AdminBase {
     public function enqueue_assets(string $hook): void {
         if (strpos($hook, 'gent') === false) return;
         wp_enqueue_style('gent-admin', ELE_ADDONS_URL . 'assets/css/admin.css', [], '1.0.0');
+        wp_enqueue_media();
+        wp_enqueue_script('gent-admin', ELE_ADDONS_URL . 'assets/js/admin.js', ['jquery', 'media-upload'], '1.0.0', true);
     }
 }

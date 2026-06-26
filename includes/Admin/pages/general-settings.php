@@ -14,16 +14,9 @@ if (isset($_POST['gent_general_nonce']) && wp_verify_nonce($_POST['gent_general_
     update_option('blogdescription', $tagline);
 
     $fields = [
-        'company_name',
-        'tagline',
-        'company_email',
-        'phone_number',
-        'whatsapp_number',
-        'address',
-        'facebook_url',
-        'instagram_url',
-        'tiktok_url',
-        'youtube_url'
+        'company_name', 'tagline', 'company_email', 'phone_number', 'whatsapp_number',
+        'address', 'facebook_url', 'instagram_url', 'tiktok_url', 'youtube_url',
+        'footer_description', 'copyright_text', 'copyright_tagline', 'moto',
     ];
     $data = [];
     foreach ($fields as $field) {
@@ -31,26 +24,12 @@ if (isset($_POST['gent_general_nonce']) && wp_verify_nonce($_POST['gent_general_
     }
 
     // Handle logo & favicon uploads — also sync logo with WP custom logo
-    require_once ABSPATH . 'wp-admin/includes/file.php';
-    require_once ABSPATH . 'wp-admin/includes/media.php';
-    require_once ABSPATH . 'wp-admin/includes/image.php';
-
-    foreach (['logo', 'favicon'] as $upload) {
-        if (!empty($_FILES[$upload]['name'])) {
-            $id = media_handle_upload($upload, 0);
-            if (!is_wp_error($id)) {
-                $data[$upload] = $id;
-                // Sync logo with WordPress custom logo theme mod
-                if ($upload === 'logo') {
-                    set_theme_mod('custom_logo', $id);
-                }
-                // Sync favicon with WordPress site icon
-                if ($upload === 'favicon') {
-                    update_option('site_icon', $id);
-                }
-            } else {
-                $data[$upload] = $saved[$upload] ?? '';
-            }
+    foreach (['logo', 'favicon', 'footer_logo'] as $upload) {
+        $id = absint($_POST[$upload . '_id'] ?? 0);
+        if ($id) {
+            $data[$upload] = $id;
+            if ($upload === 'logo')    set_theme_mod('custom_logo', $id);
+            if ($upload === 'favicon') update_option('site_icon', $id);
         } else {
             $data[$upload] = $saved[$upload] ?? '';
         }
@@ -72,6 +51,21 @@ if (empty($opts['favicon']))
     $opts['favicon'] = get_option('site_icon', '');
 
 $v = fn(string $key) => esc_attr($opts[$key] ?? '');
+
+function gent_media_picker(string $name, $attachment_id, string $hint = ''): void {
+    $url = $attachment_id ? wp_get_attachment_image_url($attachment_id, 'medium') : '';
+    ?>
+    <div class="gent-media-wrap">
+        <input type="hidden" name="<?= esc_attr($name) ?>_id" class="gent-media-id" value="<?= esc_attr($attachment_id) ?>">
+        <img class="gent-media-preview" src="<?= esc_url($url) ?>" <?= $url ? '' : 'style="display:none"' ?>>
+        <div class="gent-media-actions">
+            <button type="button" class="button gent-media-btn"><?= $url ? __('Change Image', 'gent') : __('Select Image', 'gent') ?></button>
+            <button type="button" class="gent-media-remove" <?= $url ? '' : 'style="display:none"' ?>>✕ <?php _e('Remove', 'gent'); ?></button>
+        </div>
+        <?php if ($hint) : ?><span class="gent-hint"><?= esc_html($hint) ?></span><?php endif; ?>
+    </div>
+    <?php
+}
 ?>
 <div class="gent-settings-wrap">
     <h1><?php _e('General Settings', 'gent'); ?></h1>
@@ -82,7 +76,7 @@ $v = fn(string $key) => esc_attr($opts[$key] ?? '');
         </div>
     <?php endif; ?>
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post">
         <?php wp_nonce_field('gent_save_general', 'gent_general_nonce'); ?>
 
         <!-- Site Identity -->
@@ -159,27 +153,34 @@ $v = fn(string $key) => esc_attr($opts[$key] ?? '');
             <div class="gent-form-grid">
                 <div class="gent-field">
                     <label><?php _e('Logo', 'gent'); ?></label>
-                    <div class="gent-upload-preview">
-                        <?php if (!empty($opts['logo'])): ?>
-                            <img src="<?= esc_url(wp_get_attachment_url($opts['logo'])) ?>"
-                                style="max-height:52px;max-width:120px">
-                        <?php endif; ?>
-                        <input type="file" name="logo" accept="image/*">
-                    </div>
-                    <span
-                        class="gent-hint"><?php _e('Syncs with WordPress custom logo & Customizer.', 'gent'); ?></span>
+                    <?php gent_media_picker('logo', $opts['logo'] ?? '', __('Syncs with WordPress custom logo & Customizer.', 'gent')); ?>
                 </div>
                 <div class="gent-field">
                     <label><?php _e('Favicon', 'gent'); ?></label>
-                    <div class="gent-upload-preview">
-                        <?php if (!empty($opts['favicon'])): ?>
-                            <img src="<?= esc_url(wp_get_attachment_url($opts['favicon'])) ?>"
-                                style="max-height:32px;max-width:32px">
-                        <?php endif; ?>
-                        <input type="file" name="favicon" accept="image/x-icon,image/png,image/*">
-                    </div>
-                    <span
-                        class="gent-hint"><?php _e('Syncs with WordPress › Appearance › Customize › Site Icon.', 'gent'); ?></span>
+                    <?php gent_media_picker('favicon', $opts['favicon'] ?? '', __('Syncs with WordPress › Appearance › Customize › Site Icon.', 'gent')); ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="gent-card">
+            <p class="gent-card-title"><?php _e('Footer', 'gent'); ?></p>
+            <div class="gent-form-grid">
+                <div class="gent-field" style="grid-column:1/-1">
+                    <label><?php _e('Footer Logo', 'gent'); ?></label>
+                    <?php gent_media_picker('footer_logo', $opts['footer_logo'] ?? '', __('Separate logo displayed in the footer area.', 'gent')); ?>
+                </div>
+                <div class="gent-field" style="grid-column:1/-1">
+                    <label><?php _e('Footer Description', 'gent'); ?></label>
+                    <textarea name="footer_description" rows="3" placeholder="<?php _e('A short description shown below the footer logo.', 'gent'); ?>"><?= esc_textarea($opts['footer_description'] ?? '') ?></textarea>
+                </div>
+                <div class="gent-field">
+                    <label><?php _e('Copyright Text', 'gent'); ?></label>
+                    <input type="text" name="copyright_text" value="<?= $v('copyright_text') ?>" placeholder="<?php _e('e.g. © 2025 Gent. All rights reserved.', 'gent'); ?>">
+                </div>
+                <div class="gent-field">
+                    <label><?php _e('Copyright Tagline', 'gent'); ?></label>
+                    <input type="text" name="copyright_tagline" value="<?= $v('copyright_tagline') ?>" placeholder="<?php _e('e.g. Designed with ♥ in Bangladesh.', 'gent'); ?>">
                 </div>
             </div>
         </div>
