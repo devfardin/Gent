@@ -13,7 +13,6 @@ class TemplatesBase
     }
 
     public function load_dep(){
-        Footer::instance()->init();
     }
 
     public function load_plugin_single_template(string $single_template): string

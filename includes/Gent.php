@@ -3,6 +3,8 @@
 namespace Fardin\Gent;
 
 use Elementor\Core\Page_Assets\Loader;
+use Fardin\Autonova\Frontend\FrontendBase;
+use Fardin\Autonova\Frontend\FrontendEnqueue;
 use Fardin\Gent\Admin\AdminBase;
 
 if (!defined('ABSPATH')) {
@@ -23,10 +25,10 @@ class Gent
 
     public function define_constants()
     {
-        define('ELE_ADDMIN_VERSION', '1.0.0');
-        define('ELE_ADDONS_PATH', plugin_dir_path(__DIR__));
-        define('ELE_ADDONS_URL', plugin_dir_url(__DIR__));
-        define('ELE_ADDONS_TEXT_DOMAIN', load_plugin_textdomain('Gent', false, dirname(plugin_basename(__FILE__)) . '/languages'));
+        define('GENT_VERSION', '1.0.0');
+        define('GENT_PATH', plugin_dir_path(__DIR__));
+        define('GENT_URL', plugin_dir_url(__DIR__));
+        define('GENT_TEXT_DOMAIN', load_plugin_textdomain('Gent', false, dirname(plugin_basename(__FILE__)) . '/languages'));
     }
 
     public function init_plugin()
@@ -36,11 +38,12 @@ class Gent
     }
     public function includes()
     {
-        //    App\Widgets\Base::instance()->init();
         Widgets\Base::instance()->init();
         Templates\TemplatesBase::instance()->init();
         Shortcodes\ShortcodesBase::instance()->init();
         Admin\AdminBase::instance()->init();
+        Features\FeaturesBase::instance()->init();
+        Frontend\FrontendBase::instance()->init();
     }
 
     public function init_hooks()

@@ -1,16 +1,116 @@
- .ele_addons_advance_button{
- background: var(--e-global-color-primary);
- }
- .ele_addons_advance_button_wrapper{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-   
+ .GENT_advance_button {
+     background: var(--e-global-color-primary);
  }
 
- .ele_addons_advance_button .ele_addons_icon_wrapper svg {
-    width: 20px !important;
-    height: auto;
-}
+ .GENT_advance_button_wrapper {
+     display: flex;
+     gap: 5px;
+     align-items: center;
+
+ }
+
+ .GENT_advance_button .GENT_icon_wrapper svg {
+     width: 20px !important;
+     height: auto;
+ }
 
 
+ /* ── WhatsApp Float Button ── */
+ .wa-float {
+     position: fixed;
+     bottom: 50px;
+     right: 30px;
+     z-index: 9999;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     text-decoration: none;
+     cursor: pointer;
+ }
+
+ /* Label */
+ .wa-float__label {
+     background: var(--brand);
+     color: var(--text-primary);
+     font-size: 13px;
+     font-weight: 600;
+     padding: 7px 14px;
+     border-radius: 20px;
+     white-space: nowrap;
+     box-shadow: var(--shadow);
+     opacity: 0;
+     transform: translateX(10px);
+     transition: opacity 0.3s ease, transform 0.3s ease;
+     pointer-events: none;
+ }
+
+ .wa-float:hover .wa-float__label {
+     opacity: 1;
+     transform: translateX(0);
+ }
+
+ /* Icon wrapper */
+ .wa-float__icon-wrap {
+     position: relative;
+     width: 58px;
+     height: 58px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ /* Ping ring */
+ .wa-float__ping {
+     position: absolute;
+     inset: 0;
+     border-radius: 50%;
+     background: rgba(37, 211, 102, 0.4);
+     animation: wa-ping 2s ease-out infinite;
+ }
+
+ /* Pulse ring */
+ .wa-float__pulse {
+     position: absolute;
+     inset: 0;
+     border-radius: 50%;
+     background: rgba(37, 211, 102, 0.25);
+     animation: wa-ping 2s ease-out infinite 0.6s;
+ }
+
+ /* Main button */
+ .wa-float__btn {
+     position: relative;
+     z-index: 1;
+     width: 58px;
+     height: 58px;
+     background: #026928;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .wa-float:hover .wa-float__btn {
+     transform: scale(1.1) rotate(-8deg);
+     box-shadow: 0 10px 28px rgba(37, 211, 102, 0.65);
+ }
+
+ /* Ping keyframes */
+ @keyframes wa-ping {
+     0% {
+         transform: scale(1);
+         opacity: 0.7;
+     }
+
+     80% {
+         transform: scale(1.8);
+         opacity: 0;
+     }
+
+     100% {
+         transform: scale(1.8);
+         opacity: 0;
+     }
+ }

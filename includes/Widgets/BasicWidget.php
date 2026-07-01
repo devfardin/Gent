@@ -20,7 +20,7 @@ class BasicWidget extends Widget_Base
 
 	public function get_title(): string
 	{
-		return esc_html__('ELE Button', ELE_ADDONS_TEXT_DOMAIN);
+		return esc_html__('ELE Button', GENT_TEXT_DOMAIN);
 	}
 
 	public function get_icon(): string
@@ -53,7 +53,7 @@ class BasicWidget extends Widget_Base
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => esc_html__('Advance Button ', ELE_ADDONS_TEXT_DOMAIN),
+				'label' => esc_html__('Advance Button ', GENT_TEXT_DOMAIN),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -61,9 +61,9 @@ class BasicWidget extends Widget_Base
 		$this->add_control(
 			'button_text',
 			[
-				'label' => esc_html__('Text', ELE_ADDONS_TEXT_DOMAIN),
+				'label' => esc_html__('Text', GENT_TEXT_DOMAIN),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__('Click me', ELE_ADDONS_TEXT_DOMAIN),
+				'default' => esc_html__('Click me', GENT_TEXT_DOMAIN),
 				'dynamic' => [
 					'active' => true,
 				],
@@ -72,7 +72,7 @@ class BasicWidget extends Widget_Base
 		$this->add_control(
 			'button_link',
 			[
-				'label' => esc_html__('link', ELE_ADDONS_TEXT_DOMAIN),
+				'label' => esc_html__('link', GENT_TEXT_DOMAIN),
 				'type' => Controls_Manager::URL,
 				'options' => ['url', 'is_external', 'nofollow'],
 				'default' => [
@@ -134,7 +134,7 @@ class BasicWidget extends Widget_Base
 				'default' => 'row',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .ele_addons_advance_button_wrapper' => 'flex-direction: {{VALUE}};',
+					'{{WRAPPER}} .GENT_advance_button_wrapper' => 'flex-direction: {{VALUE}};',
 				],
 				'condition' => [
 					'show_icon' => ['yes'],
@@ -164,7 +164,7 @@ class BasicWidget extends Widget_Base
 					'size' => 0,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ele_addons_advance_button_wrapper' => 'gap: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .GENT_advance_button_wrapper' => 'gap: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [
 					'show_icon' => ['yes'],
@@ -183,7 +183,7 @@ class BasicWidget extends Widget_Base
 		$this->start_controls_section(
 			'section_button_style',
 			[
-				'label' => esc_html__('Button Style', ELE_ADDONS_TEXT_DOMAIN),
+				'label' => esc_html__('Button Style', GENT_TEXT_DOMAIN),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -224,7 +224,7 @@ class BasicWidget extends Widget_Base
 		$this->add_control(
 			'',
 			[
-				'label' => esc_html__('Text Color', ELE_ADDONS_TEXT_DOMAIN),
+				'label' => esc_html__('Text Color', GENT_TEXT_DOMAIN),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .hello-world' => 'color: {{VALUE}};',
@@ -249,18 +249,18 @@ class BasicWidget extends Widget_Base
 		}
 		?>
 
-		<div class="ele_addons_advance_button_container">
-			<a <?php $this->print_render_attribute_string('button_link') ?> class="ele_addons_advance_button elementor-button">
-			<span class="ele_addons_advance_button_wrapper">
-				<span class="ele_addons_icon_wrapper">
-					<?php Icons_Manager::render_icon($settings['button_icon'], ['arial-hidden' => 'true']); ?>
+		<div class="GENT_advance_button_container">
+			<a <?php $this->print_render_attribute_string('button_link') ?> class="GENT_advance_button elementor-button">
+				<span class="GENT_advance_button_wrapper">
+					<span class="GENT_icon_wrapper">
+						<?php Icons_Manager::render_icon($settings['button_icon'], ['arial-hidden' => 'true']); ?>
+					</span>
+					<span>
+						<?php echo $settings['button_text']; ?>
+					</span>
 				</span>
-				<span>
-					<?php echo $settings['button_text']; ?>
-				</span>
-			</span>
 
-		</a>
+			</a>
 		</div>
 		<?php
 	}
